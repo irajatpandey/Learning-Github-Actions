@@ -1,44 +1,44 @@
- name: my-first-workflow
- # To get trigger on every push in this repo in any branch 
- on: 
-  workflow_dispatch: 
-  push:
+#  name: my-first-workflow
+#  # To get trigger on every push in this repo in any branch 
+#  on: 
+#   workflow_dispatch: 
+#   push:
  
- jobs:
-   job1:
-     name: JOB1
-     runs-on: ubuntu-latest
-     steps:
-       - name: Running Single Command in Job1
-         run: echo "Hi thhis is my first Github workflow"
-       - name: Checking OS Release for Github Hosted Runner
-         run: cat /etc/os-release
-       - name: Calling Sleep
-         run: sleep 20
-   job2:
-     name: JOB2
-     runs-on: ubuntu-latest
-     steps:
-      - name: Cheking the Hostname for Runner
-        run: hostname
-      - name: Running multiple Commands
-        run: |
-          echo "Hi form Rajat Pandey" 
-          echo "Current Time is `date`"
-          sleep 20
-   job3:
-      name: JOB3
-      needs: job1
-      runs-on: ubuntu-latest
-      steps:
-        - name: Job for Single dependencies
-          run: sleep 10
-   job4:
-      name: JOB4
-      needs: [job1, job2, job3]
-      runs-on: ubuntu-latest
-      steps:
-        - name: Job for multiple dependencies
-          run: sleep 10
+#  jobs:
+#    job1:
+#      name: JOB1
+#      runs-on: ubuntu-latest
+#      steps:
+#        - name: Running Single Command in Job1
+#          run: echo "Hi thhis is my first Github workflow"
+#        - name: Checking OS Release for Github Hosted Runner
+#          run: cat /etc/os-release
+#        - name: Calling Sleep
+#          run: sleep 20
+#    job2:
+#      name: JOB2
+#      runs-on: ubuntu-latest
+#      steps:
+#       - name: Cheking the Hostname for Runner
+#         run: hostname
+#       - name: Running multiple Commands
+#         run: |
+#           echo "Hi form Rajat Pandey" 
+#           echo "Current Time is `date`"
+#           sleep 20
+#    job3:
+#       name: JOB3
+#       needs: job1
+#       runs-on: ubuntu-latest
+#       steps:
+#         - name: Job for Single dependencies
+#           run: sleep 10
+#    job4:
+#       name: JOB4
+#       needs: [job1, job2, job3]
+#       runs-on: ubuntu-latest
+#       steps:
+#         - name: Job for multiple dependencies
+#           run: sleep 10
      
      
