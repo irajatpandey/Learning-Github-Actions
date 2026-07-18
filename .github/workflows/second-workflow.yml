@@ -1,0 +1,12 @@
+name: second-workflow
+
+on:
+ push:
+ workflow_dispatch:
+ jobs:
+  job1:
+    name: JOB1
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v7.0.0
