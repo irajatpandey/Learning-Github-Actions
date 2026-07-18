@@ -21,4 +21,12 @@ jobs:
         with: 
           name: single_file
           path: ./myartifact.txt
+      - name: Upload an Individual File (Unzipped)
+        run: mkdir -p artifact
+        run: echo hello > ./artifact/world.txt
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          path: ./artifact/world.txt
+          archive: false
+
         
