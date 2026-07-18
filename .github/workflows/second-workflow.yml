@@ -3,7 +3,7 @@ name: second-workflow
 on:
  push:
  workflow_dispatch:
- jobs:
+jobs:
   job1:
     name: JOB1
     runs-on: ubuntu-latest
