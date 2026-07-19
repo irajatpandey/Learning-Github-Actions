@@ -84,3 +84,26 @@ jobs:
       - name: Reffering Repository Secrets
         run: |
           echo "[INFO] Application password is  ${{ secrets.APP_PASSWORD}}"
+
+  job3:
+    name: JOB3
+    runs-on: ubuntu-latest
+    steps:
+      - name: Refer In-Build Variables
+        run: |
+          echo "[INFO] Run ID: $GITHUB_RUN_ID"
+          echo "[INFO] Run Number: $GITHUB_RUN_NUMBER"
+          echo "[INFO] Run Attempt: $GITHUB_RUN_ATTEMPT"
+
+          echo "[INFO] Branch/Tag Ref: $GITHUB_REF"
+          echo "[INFO] Branch/Tag Name: $GITHUB_REF_NAME"
+          echo "[INFO] Ref Type: $GITHUB_REF_TYPE"
+
+          echo "[INFO] Event Triggered By: $GITHUB_EVENT_NAME"
+          echo "[INFO] Triggered By User: $GITHUB_ACTOR"
+          echo "[INFO] Actor ID: $GITHUB_ACTOR_ID"
+
+          echo "[INFO] Repository: $GITHUB_REPOSITORY"
+          echo "[INFO] Commit SHA: $GITHUB_SHA"
+          echo "[INFO] Workflow Name: $GITHUB_WORKFLOW"
+          echo "[INFO] Job Name: $GITHUB_JOB"
