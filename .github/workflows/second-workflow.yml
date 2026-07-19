@@ -2,6 +2,11 @@ name: second-workflow
 
 on:
  push:
+   brances:
+     - dev
+     - 'feature/'
+     - release/v0.0.1
+     - master
  workflow_dispatch:
 jobs:
   job1:
