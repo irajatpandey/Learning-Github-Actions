@@ -106,6 +106,7 @@ jobs:
           echo "[INFO] Job Name: $GITHUB_JOB"
 
   staging:
+    if: github.ref == 'refs/head/dev'
     name: STAGE DEPLOYMENT
     runs-on: ubuntu-latest
     environment:
@@ -116,8 +117,9 @@ jobs:
 
       - name: Referring Env Secrets
         run: echo "[INFO] Password for ${{ secrets.PASSWORD }}"
-
+     
   production:
+    if: github.ref == 'refs/head/master'
     name: PROD DEPLOYMENT
     runs-on: ubuntu-latest
     environment:
