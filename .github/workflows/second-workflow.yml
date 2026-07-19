@@ -6,6 +6,10 @@ on:
     # - 'feature/'
     # - release/v0.0.1
      - master
+ env:
+  environment: dev
+  APP_NAME: learning-github-actions
+  APP_PORT: 8443
 
  pull_request:
     branches:
@@ -72,6 +76,10 @@ jobs:
             pwd
             ls -ltr
             ls single_file
+      - name: Refer environment Variables in Pipeline
+        run: |
+             echo "[INFO] Application name is $APP_NAME and running on Port $APP_PORT"
+
 
         
         
