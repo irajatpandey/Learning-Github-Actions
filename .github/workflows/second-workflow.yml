@@ -2,14 +2,13 @@ name: second-workflow
 
 on:
  push:
-   brances:
-     - dev
+   branches: # - dev
     # - 'feature/'
     # - release/v0.0.1
      - master
 
  pull_request:
-    brances:
+    branches:
       - master  
 
  workflow_dispatch:
