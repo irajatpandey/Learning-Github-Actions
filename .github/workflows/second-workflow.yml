@@ -81,6 +81,6 @@ jobs:
       - name: Refer environment Variables in Pipeline
         run: |
              echo "[INFO] Application name is $APP_NAME and running on Port $APP_PORT on env $ENVIRONMENT"
-      - name: Refferign Repository Secrets
+      - name: Reffering Repository Secrets
         run: |
           echo "[INFO] Application password is  ${{ secrets.APP_PASSWORD}}"
