@@ -4,14 +4,14 @@ on:
  push:
    brances:
      - dev
-     - 'feature/'
-     - release/v0.0.1
+    # - 'feature/'
+    # - release/v0.0.1
      - master
 
  pull_request:
     brances:
       - master  
-       
+
  workflow_dispatch:
 jobs:
   job1:
