@@ -41,7 +41,7 @@ jobs:
       - name: Checking Current Directory
         run: |
             pwd
-            ls - ltr
+            ls -ltr
       - name: Download Build Artifacts
         uses: actions/download-artifact@v8.0.1
         with: 
