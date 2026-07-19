@@ -49,7 +49,7 @@ jobs:
       - name: Checking Current Directory Post Download
         run: |
             pwd
-            ls - ltr
+            ls -ltr
 
         
         
