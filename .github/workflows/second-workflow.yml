@@ -106,7 +106,7 @@ jobs:
           echo "[INFO] Job Name: $GITHUB_JOB"
 
   staging:
-    if: github.ref == 'refs/head/dev'
+    if: github.head_ref == 'refs/head/dev'
     name: STAGE DEPLOYMENT
     runs-on: ubuntu-latest
     environment:
