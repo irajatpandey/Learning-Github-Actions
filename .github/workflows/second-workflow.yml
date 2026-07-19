@@ -107,3 +107,24 @@ jobs:
           echo "[INFO] Commit SHA: $GITHUB_SHA"
           echo "[INFO] Workflow Name: $GITHUB_WORKFLOW"
           echo "[INFO] Job Name: $GITHUB_JOB"
+  staging:
+    name: STAGE DEPLOYMENT
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reffering Env Variables
+        run: echo "[INFO] Running DEPLOYMENT on ${{ vars.HOST }} using ${{ vars.USER }}"
+      - name: Reffering Env Secrets
+        run: echo "[INFO] Password for ${{ secrets.PASSWORD }}"
+    environment:
+      name: STAGING
+  production:
+    name: PROD DEPLOYMENT
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reffering Env Variables
+        run: echo "[INFO] Running DEPLOYMENT on ${{ vars.HOST }} using ${{ vars.USER }}"
+      - name: Reffering Env Secrets
+        run: echo "[INFO] Password for ${{ secrets.PASSWORD }}"
+    environment:
+      name: PRODUCTION
+    
