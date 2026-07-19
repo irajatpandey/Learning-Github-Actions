@@ -104,6 +104,7 @@ jobs:
           echo "[INFO] Commit SHA: $GITHUB_SHA"
           echo "[INFO] Workflow Name: $GITHUB_WORKFLOW"
           echo "[INFO] Job Name: $GITHUB_JOB"
+         
 
   staging:
     if: github.head_ref == 'dev'
@@ -119,7 +120,7 @@ jobs:
         run: echo "[INFO] Password for ${{ secrets.PASSWORD }}"
      
   production:
-    if: github.ref == 'refs/head/master'
+    if: github.ref == 'refs/heads/master'
     name: PROD DEPLOYMENT
     runs-on: ubuntu-latest
     environment:
