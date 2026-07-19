@@ -32,4 +32,24 @@ jobs:
         with:
           path: ./myartifact.txt
           archive: false
+  job2:
+    name: JOB2
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Git Checkout
+        uses: actions/checkout@v7.0.0
+      - name: Checking Current Directory
+        run: |
+            pwd
+            ls - ltr
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v8.0.1
+        with: 
+          name: single_file
+      - name: Checking Current Directory Post Download
+        run: |
+            pwd
+            ls - ltr
+
+        
         
