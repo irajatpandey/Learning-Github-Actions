@@ -6,10 +6,9 @@ on:
       - master
   pull_request:
     branches:
-      - master  
+      - master
   workflow_dispatch:
 
-# The env block must be at the root level, outside of 'on'
 env:
   ENVIRONMENT: dev
   APP_NAME: learning-github-actions
@@ -19,24 +18,24 @@ jobs:
   job1:
     name: JOB1
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
-      - name: check the files
+
+      - name: Check the files
         run: ls -ltr
-        
+
       - name: Build artifact
         run: |
           echo "Hello" >> myartifact.txt
           ls -ltr
-          
+
       - name: Upload Single File
         uses: actions/upload-artifact@v4
-        with: 
+        with:
           name: single_file
           path: ./myartifact.txt
-          
+
       - name: Prepare Artifact
         run: |
           mkdir -p artifact
@@ -45,45 +44,46 @@ jobs:
   job2:
     name: JOB2
     runs-on: ubuntu-latest
-    needs: job1 # Fixed case sensitivity (Job1 -> job1)
-    steps: 
+    needs: job1
+    steps:
       - name: Git Checkout
         uses: actions/checkout@v4
-        
+
       - name: Checking Current Directory
         run: |
-            pwd
-            ls -ltr
-            
+          pwd
+          ls -ltr
+
       - name: Download Build Artifacts
         uses: actions/download-artifact@v4
-        with: 
+        with:
           name: single_file
-          
+
       - name: Checking Current Directory Post Download
         run: |
-            mkdir -p single_file
-            pwd
-            ls -ltr
+          mkdir -p single_file
+          pwd
+          ls -ltr
 
       - name: Download Build Artifacts on Different Folder
         uses: actions/download-artifact@v4
-        with: 
+        with:
           name: single_file
           path: single_file
-          
+
       - name: Checking Current Directory Post Download
         run: |
-            pwd
-            ls -ltr
-            ls single_file
-            
+          pwd
+          ls -ltr
+          ls single_file
+
       - name: Refer environment Variables in Pipeline
         run: |
-             echo "[INFO] Application name is $APP_NAME and running on Port $APP_PORT on env $ENVIRONMENT"
-      - name: Reffering Repository Secrets
+          echo "[INFO] Application name is $APP_NAME and running on Port $APP_PORT on env $ENVIRONMENT"
+
+      - name: Referring Repository Secrets
         run: |
-          echo "[INFO] Application password is  ${{ secrets.APP_PASSWORD}}"
+          echo "[INFO] Application password is ${{ secrets.APP_PASSWORD }}"
 
   job3:
     name: JOB3
@@ -94,37 +94,37 @@ jobs:
           echo "[INFO] Run ID: $GITHUB_RUN_ID"
           echo "[INFO] Run Number: $GITHUB_RUN_NUMBER"
           echo "[INFO] Run Attempt: $GITHUB_RUN_ATTEMPT"
-
           echo "[INFO] Branch/Tag Ref: $GITHUB_REF"
           echo "[INFO] Branch/Tag Name: $GITHUB_REF_NAME"
           echo "[INFO] Ref Type: $GITHUB_REF_TYPE"
-
           echo "[INFO] Event Triggered By: $GITHUB_EVENT_NAME"
           echo "[INFO] Triggered By User: $GITHUB_ACTOR"
           echo "[INFO] Actor ID: $GITHUB_ACTOR_ID"
-
           echo "[INFO] Repository: $GITHUB_REPOSITORY"
           echo "[INFO] Commit SHA: $GITHUB_SHA"
           echo "[INFO] Workflow Name: $GITHUB_WORKFLOW"
           echo "[INFO] Job Name: $GITHUB_JOB"
+
   staging:
     name: STAGE DEPLOYMENT
     runs-on: ubuntu-latest
-    steps:
-      - name: Reffering Env Variables
-        run: echo "[INFO] Running DEPLOYMENT on ${{ vars.HOST }} using ${{ vars.USER }}"
-      - name: Reffering Env Secrets
-        run: echo "[INFO] Password for ${{ secrets.PASSWORD }}"
     environment:
       name: STAGING
+    steps:
+      - name: Referring Env Variables
+        run: echo "[INFO] Running DEPLOYMENT on ${{ vars.HOST }} using ${{ vars.USER }}"
+
+      - name: Referring Env Secrets
+        run: echo "[INFO] Password for ${{ secrets.PASSWORD }}"
+
   production:
     name: PROD DEPLOYMENT
     runs-on: ubuntu-latest
-    steps:
-      - name: Reffering Env Variables
-        run: echo "[INFO] Running DEPLOYMENT on ${{ vars.HOST }} using ${{ vars.USER }}"
-      - name: Reffering Env Secrets
-        run: echo "[INFO] Password for ${{ secrets.PASSWORD }}"
     environment:
       name: PRODUCTION
-    
+    steps:
+      - name: Referring Env Variables
+        run: echo "[INFO] Running DEPLOYMENT on ${{ vars.HOST }} using ${{ vars.USER }}"
+
+      - name: Referring Env Secrets
+        run: echo "[INFO] Password for ${{ secrets.PASSWORD }}"
