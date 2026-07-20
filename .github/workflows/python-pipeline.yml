@@ -11,7 +11,7 @@ on:
 jobs:
   unit-tests:
     name: Running unit tests
-    runs-on: ubuntu-latestßß
+    runs-on: ubuntu-latest
     steps:
      - name: Checkout Code
        uses: actions/checkout@v4
