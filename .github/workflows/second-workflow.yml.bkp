@@ -36,7 +36,7 @@ jobs:
           name: single_file
           path: ./myartifact.txt
 
-      - name: Prepare Artifact
+      - name: Prepare Artifactf
         run: |
           mkdir -p artifact
           echo hello > ./artifact/world.txt
