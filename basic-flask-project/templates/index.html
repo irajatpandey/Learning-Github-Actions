@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <main class="page">
+      <section class="panel">
+        <p class="eyebrow">Flask Starter</p>
+        <h1>{{ title }}</h1>
+        <p>
+          Your Flask app is running. Use this starter to add routes,
+          templates, APIs, and deployment configuration.
+        </p>
+        <a class="button" href="/health">Check Health</a>
+      </section>
+    </main>
+  </body>
+</html>
