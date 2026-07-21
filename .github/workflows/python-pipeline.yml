@@ -28,7 +28,7 @@ jobs:
 
       - name: Run Unit tests
         run: |
-          mkdir reports/
+          mkdir -p reports/
           pytest --junitxml=reports/unit-test-results.xml --cov=. --cov-report=xml:reports/coverage.xml --cov-report=term-missing -v
 
       - name: Upload Code Coverage report
@@ -97,20 +97,22 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Docker Build
-        uses: docker/setup-builds-actions@v3.0.0
+        uses: docker/setup-buildx-action@v3.0.0
       
       - name: Generate Image Tags
         id: vars
         run: |
-          IMAGE_TAGS="${{ github.run_id }}-${{ GITHUB_SHA::7 }}"
-          echo "IMAGE_TAGS: $IMAGE_TAGS" >> $GITHUB_OUTPUT
+          IMAGE_TAGS="${GITHUB_RUN_ID}-${GITHUB_SHA::7}"
+          echo "IMAGE_TAGS=$IMAGE_TAGS" >> "$GITHUB_OUTPUT"
+
       - name: Build Image
-        uses: docker/build-and-actions@v5.0.0
+        uses: docker/build-push-action@v5.0.0
         with:
-          context: 
+          context: .
           file: ./Dockerfile
           push: false
-          tags: my-first-app:${{ steps.vars.outputs.$IMAGE_TAGS }}
+          load: true
+          tags: irajatpandey_app:${{ steps.vars.outputs.IMAGE_TAGS }}
 
       - name: Save Docker Image
         run: docker save irajatpandey_app:${{ steps.vars.outputs.IMAGE_TAGS }} -o my_app.tar
