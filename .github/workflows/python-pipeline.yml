@@ -29,7 +29,7 @@ jobs:
       - name: Run Unit tests
         run: |
           mkdir -p reports/
-          pytest --junitxml=reports/unit-test-results.xml --cov=basic-flask-project --cov-omit=basic-flask-project/tests/* --cov-report=xml:reports/coverage.xml --cov-report=term-missing -v
+          pytest --junitxml=reports/unit-test-results.xml --cov=basic-flask-project --cov-report=xml:reports/coverage.xml --cov-report=term-missing -v
 
       - name: Upload Code Coverage report
         uses: actions/upload-artifact@v4

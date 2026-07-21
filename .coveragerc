@@ -1,0 +1,3 @@
+[run]
+omit =
+    basic-flask-project/tests/*
