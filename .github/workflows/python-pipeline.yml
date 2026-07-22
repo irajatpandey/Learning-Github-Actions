@@ -102,8 +102,8 @@ jobs:
       - name: Generate Image Tags
         id: vars
         run: |
-          IMAGE_TAGS="${GITHUB_RUN_ID}-${GITHUB_SHA::7}"
-          echo "IMAGE_TAGS=$IMAGE_TAGS" >> "$GITHUB_OUTPUT"
+          IMAGE_TAG="${GITHUB_RUN_ID}-${GITHUB_SHA::7}"
+          echo "IMAGE_TAG=$IMAGE_TAG" >> "$GITHUB_OUTPUT"
 
       - name: Build Image
         uses: docker/build-push-action@v5.0.0
@@ -112,10 +112,10 @@ jobs:
           file: ./Dockerfile
           push: false
           load: true
-          tags: irajatpandey_app:${{ steps.vars.outputs.IMAGE_TAGS }}
+          tags: my_app:${{ steps.vars.outputs.IMAGE_TAG }}
 
       - name: Save Docker Image
-        run: docker save irajatpandey_app:${{ steps.vars.outputs.IMAGE_TAGS }} -o my_app.tar
+        run: docker save my_app:${{ steps.vars.outputs.IMAGE_TAG }} -o my_app.tar
       
       - name: Upload Docker Image artifact
         uses: actions/upload-artifact@v5.0.0
@@ -139,13 +139,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Tag Image
-        run: | 
-          IMAGE_TAGS="${{ needs.build.outputs.image-tags }}"
-          docker image tag my_app:$IMAGE_TAGS ${{ secrets.DOCKERHUB_USERNAME }}/my_app:$IMAGE_TAGS
-        
+        run: |
+          docker image tag my_app:${{ steps.vars.outputs.IMAGE_TAG }} ${{ secrets.DOCKERHUB_USERNAME }}/my_app:${{ steps.vars.outputs.IMAGE_TAG }}
+
       - name: Push Image
         run: |
-            IMAGE_TAGS="${{ needs.build.outputs.image-tags }}"
-            docker image push ${{ secrets.DOCKERHUB_USERNAME }}/my_app:$IMAGE_TAGS
+          docker image push ${{ secrets.DOCKERHUB_USERNAME }}/my_app:${{ steps.vars.outputs.IMAGE_TAG }}
               
           
