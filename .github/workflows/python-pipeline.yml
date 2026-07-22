@@ -5,11 +5,12 @@ on:
   push:
     branches:
       - master
-      - release/reusable-workflow
+      - release/**
   pull_request:
     branches:
       - master
-      - release/reusable-workflow
+      - release/**
+      
 
 jobs: 
   ci-pipeline-jobs:
