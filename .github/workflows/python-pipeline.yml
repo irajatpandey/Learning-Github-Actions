@@ -8,7 +8,7 @@ on:
     branches:
       - master
 
-jobs:
+jobs: 
   unit-tests:
     name: Running unit tests
     runs-on: ubuntu-latest
@@ -122,3 +122,30 @@ jobs:
         with:
           name: my_app_image
           path: my_app.tar
+
+      - name: Download the Image
+        uses: actions/download-artifact@v5.0.0
+        with:
+          name: my_app_image
+          path: .
+
+      - name: Load Docker Image
+        run: docker load -i my_app.tar
+
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Tag Image
+        run: | 
+          IMAGE_TAGS="${{ needs.build.outputs.image-tags }}"
+          docker image tag my_app:$IMAGE_TAGS ${{ secrets.DOCKERHUB_USERNAME }}/my_app:$IMAGE_TAGS
+        
+      - name: Push Image
+        run: |
+            IMAGE_TAGS="${{ needs.build.outputs.image-tags }}"
+            docker image push ${{ secrets.DOCKERHUB_USERNAME }}/my_app:$IMAGE_TAGS
+              
+          
