@@ -1,6 +1,6 @@
 name: python-Pipeline
 
-## Use the Template
+## Use the Template. 
 on:
   push:
     branches:
@@ -11,10 +11,16 @@ on:
       - master
       - release/**
       
+permissions:
+  actions: read
+  contents: read
+  packages: write
+  security-events: write
+
 
 jobs: 
   ci-pipeline-jobs:
-    uses: irajatpandey/reusable-workflow/.github/workflows/ci-pipeline.yaml@main
+    uses: irajatpandey/reuseable-workflow/.github/workflows/ci-pipeline.yaml@master
     secrets: 
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
