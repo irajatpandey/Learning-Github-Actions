@@ -14,7 +14,7 @@ on:
 
 jobs: 
   ci-pipeline-jobs:
-    uses: irajatpandey/reusable-workflow/.github/workflows/ci-pipeline.yaml@master
+    uses: irajatpandey/reuseable-workflow/.github/workflows/ci-pipeline.yaml@master
     secrets: 
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
