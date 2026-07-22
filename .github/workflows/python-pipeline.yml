@@ -1,18 +1,20 @@
 name: python-Pipeline
 
+## Use the Template
 on:
   push:
     branches:
       - master
-      - release/reusable-workflow
+      - release/**
   pull_request:
     branches:
       - master
-      - release/reusable-workflow
+      - release/**
+      
 
 jobs: 
   ci-pipeline-jobs:
-    uses: irajatpandey/reusable-workflow/.github/workflows/ci-pipeline.yml@main
+    uses: irajatpandey/reusable-workflow/.github/workflows/ci-pipeline.yaml@main
     secrets: 
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
