@@ -1,0 +1,16 @@
+name: my-service-Pipeline
+
+on:
+  push:
+    branches:
+      - master
+      - release/**
+  pull_request:
+    branches:
+      - master
+      - release/**
+
+jobs: 
+  ci-pipeline-jobs:
+    uses: irajatpandey/platform-workflows/.github/workflows/python-ci-pipeline@master
+     
