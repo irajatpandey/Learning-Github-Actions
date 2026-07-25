@@ -12,5 +12,5 @@ on:
 
 jobs: 
   ci-pipeline-jobs:
-    uses: irajatpandey/platform-workflows/.github/workflows/python-ci-pipeline@master
+    uses: irajatpandey/platform-workflows/.github/workflows/python-ci-pipeline.yml@master
      
