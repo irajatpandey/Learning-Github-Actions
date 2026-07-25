@@ -10,7 +10,13 @@ on:
       - master
       - release/**
   workflow_dispatch:
- 
+    inputs:
+      python-version:
+        description: Python version
+        required: false
+        type: string
+        default: "3.12"
+
 
 jobs: 
   ci-pipeline-jobs:
