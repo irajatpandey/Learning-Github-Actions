@@ -18,6 +18,7 @@ on:
         default: "3.12"
 
 
+
 jobs: 
   ci-pipeline-jobs:
     uses: irajatpandey/platform-workflows/.github/workflows/python-ci.yml@master
