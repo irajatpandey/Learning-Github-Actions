@@ -10,6 +10,7 @@ on:
       - master
       - release/**
   workflow_dispatch:
+ 
 
 jobs: 
   ci-pipeline-jobs:
