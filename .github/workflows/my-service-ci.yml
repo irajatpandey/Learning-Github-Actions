@@ -30,5 +30,6 @@ jobs:
   ci-pipeline-jobs:
     uses: irajatpandey/platform-workflows/.github/workflows/python-ci.yml@master
     with:
-      exclusions: ${{ inputs.exclusions }}         
+      exclusions: ${{ inputs.exclusions }}      
+         
       
