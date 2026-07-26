@@ -1,4 +1,4 @@
-name: my-service-Pipeline         
+name: my-service-Pipeline
 
 on:
   push:
@@ -17,18 +17,16 @@ on:
         required: false
         type: string
         default: "3.12"
+
       exclusions:
+        description: SonarQube exclusions
         required: false
+        type: string
         default: ""
 
-
-##
-
-jobs: 
+jobs:
   ci-pipeline-jobs:
     uses: irajatpandey/platform-workflows/.github/workflows/python-ci.yml@master
     with:
-      exclusions: ${{ inputs.exclusions }}      
-      secrets: inherit
-
-      
+      exclusions: ${{ inputs.exclusions }}
+    secrets: inherit
