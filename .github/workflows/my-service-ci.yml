@@ -20,8 +20,6 @@ on:
       exclusions:
         required: false
         default: ""
-      sonar-token:
-        required: true
 
 
 #
