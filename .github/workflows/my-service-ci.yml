@@ -34,5 +34,5 @@ jobs:
     uses: irajatpandey/platform-workflows/.github/workflows/python-ci.yml@master
     with:
       exclusions: ${{ inputs.exclusions }}
-      run-sonar: ${{ inputs.run-sonar }}
+      run-sonar: ${{ inputs.run-sonar == 'true' || inputs.run-sonar == true }}
     secrets: inherit
