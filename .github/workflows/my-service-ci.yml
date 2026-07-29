@@ -35,5 +35,5 @@ jobs:
     with:
       python-version: ${{ inputs.python-version }}
       exclusions: ${{ inputs.exclusions }}
-      run-sonar: ${{ inputs.run-sonar != false }}
+      run-sonar: ${{ inputs.run-sonar == true || inputs.run-sonar == '' }}
     secrets: inherit
