@@ -29,5 +29,5 @@ jobs:
     uses: irajatpandey/platform-workflows/.github/workflows/python-ci.yml@master
     with:
       exclusions: ${{ inputs.exclusions }}
-      run-sonar: ${{ secrets.SONAR_TOKEN != '' }}
+      run-sonar: false
     secrets: inherit
