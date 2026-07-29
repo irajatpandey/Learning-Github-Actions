@@ -31,7 +31,7 @@ on:
 
 jobs:
   ci-pipeline-jobs:
-    uses: irajatpandey/platform-workflows/.github/workflows/python-ci.yml@master
+    uses: irajatpandey/platform-workflows/.github/workflows/python-ci.yml@ci/enable-sonar-toggle
     with:
       python-version: ${{ inputs.python-version }}
       exclusions: ${{ inputs.exclusions }}
