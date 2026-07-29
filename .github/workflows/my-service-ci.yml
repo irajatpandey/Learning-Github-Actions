@@ -1,0 +1,39 @@
+name: my-service-Pipeline
+ 
+on:
+  push:
+    branches:
+      - master
+      - feature/**
+      - release/**
+  pull_request:
+    branches:
+      - master
+      - release/**
+  workflow_dispatch:
+    inputs:
+      python-version:
+        description: Python version
+        required: false
+        type: string
+        default: "3.12"
+
+      exclusions:
+        description: SonarQube exclusions
+        required: false
+        type: string
+        default: ""
+      run-sonar:
+        description: Run SonarQube analysis (requires `SONAR_TOKEN` secret)
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  ci-pipeline-jobs:
+    uses: irajatpandey/platform-workflows/.github/workflows/python-ci.yml@master
+    with:
+      python-version: ${{ inputs.python-version }}
+      exclusions: ${{ inputs.exclusions }}
+      run-sonar: ${{ inputs.run-sonar == true || inputs.run-sonar == '' }}
+    secrets: inherit
