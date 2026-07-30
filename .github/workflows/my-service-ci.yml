@@ -28,6 +28,11 @@ on:
         required: false
         type: boolean
         default: true
+      run-nexus:
+        description: Run Nexus IQ dependency policy scan
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   ci-pipeline-jobs:
@@ -36,4 +41,5 @@ jobs:
       python-version: ${{ inputs.python-version }}
       exclusions: ${{ inputs.exclusions }}
       run-sonar: ${{ inputs.run-sonar == true || inputs.run-sonar == '' }}
+      run-nexus: ${{ inputs.run-nexus == true || inputs.run-nexus == '' }}
     secrets: inherit
