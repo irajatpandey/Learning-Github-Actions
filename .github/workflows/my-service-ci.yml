@@ -26,6 +26,10 @@ on:
 
 jobs:
   ci-pipeline-jobs:
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     uses: irajatpandey/platform-workflows/.github/workflows/python-ci.yml@master
     with:
       python-version: ${{ inputs.python-version }}
