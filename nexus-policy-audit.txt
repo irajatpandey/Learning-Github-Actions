@@ -1,0 +1,1063 @@
+/home/runner/.local/lib/python3.12/site-packages/safety/auth/main.py:5: AuthlibDeprecationWarning: authlib.jose module is deprecated, please use joserfc instead.
+It will be compatible before version 2.0.0.
+  from authlib.jose.errors import ExpiredTokenError
+
+
+[33m[1m+===========================================================================================================================================================================================+[0m
+
+
+[31m[1mDEPRECATED: [0m[33m[1mthis command (`check`) has been DEPRECATED, and will be unsupported beyond 01 June 2024.[0m
+
+
+[32mWe highly encourage switching to the new [0m[32m[1m`scan`[0m[32m command which is easier to use, more powerful, and can be set up to mimic the deprecated command if required.[0m
+
+
+[33m[1m+===========================================================================================================================================================================================+[0m
+
+
++==============================================================================+
+
+                               /$$$$$$            /$$
+                              /$$__  $$          | $$
+           /$$$$$$$  /$$$$$$ | $$  \__//$$$$$$  /$$$$$$   /$$   /$$
+          /$$_____/ |____  $$| $$$$   /$$__  $$|_  $$_/  | $$  | $$
+         |  $$$$$$   /$$$$$$$| $$_/  | $$$$$$$$  | $$    | $$  | $$
+          \____  $$ /$$__  $$| $$    | $$_____/  | $$ /$$| $$  | $$
+          /$$$$$$$/|  $$$$$$$| $$    |  $$$$$$$  |  $$$$/|  $$$$$$$
+         |_______/  \_______/|__/     \_______/   \___/   \____  $$
+                                                          /$$  | $$
+                                                         |  $$$$$$/
+  by safetycli.com                                        \______/
+
++==============================================================================+
+
+ [1mREPORT[0m 
+
+  Safety [1mv3.8.1[0m is scanning for [1mVulnerabilities[0m[1m...[0m
+[1m  Scanning dependencies[0m in your [1menvironment:[0m
+
+  -> /home/runner/.local/lib/python3.12/site-packages
+  -> /usr/lib/python3/dist-packages
+  -> /usr/local/lib/python3.12/dist-packages
+
+  Using [1mopen-source vulnerability database[0m
+[1m  Found and scanned 130 packages[0m
+  Timestamp [1m2026-07-30 16:31:27[0m
+[1m  54[0m[1m vulnerabilities reported[0m
+[1m  0[0m[1m vulnerabilities ignored[0m
+
++==============================================================================+
+ [1mVULNERABILITIES REPORTED[0m 
++==============================================================================+
+
+[31m-> Vulnerability found in configobj version 5.0.8[0m
+[1m   Vulnerability ID: [0m54843
+[1m   Affected spec: [0m<5.0.9
+[1m   ADVISORY: [0mThe configobj package affected versions contains a
+   Regular Expression Denial of Service (ReDoS) vulnerability in its validate
+   function. The vulnerable regex (.+?)\((.*)\) allows attackers to cause
+   denial of service using specially crafted input with nested parentheses.
+   This issue primarily affects server-side applications using configobj for
+   configuration parsing. The vulnerability is patched by modifying the regex
+   to ([^\(\)]+?)\((.*)\), preventing matching of nested parentheses. NOTE:
+   This is only exploitable in the case of a developer putting the offending
+   value in a server side configuration file.
+[1m   CVE-2023-26112[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/54843/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 54843 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pip version 24.0[0m
+[1m   Vulnerability ID: [0m85681
+[1m   Affected spec: [0m<26.0
+[1m   ADVISORY: [0mAffected versions of the pip package are vulnerable to
+   Path Traversal due to an incorrect directory containment check when
+   extracting wheel archives. In src/pip/_internal/utils/unpacking.py, the
+   is_within_directory() helper used os.path.commonprefix() (character-by-
+   character) to compare directory and target paths, allowing crafted paths
+   like a parent-directory substring match to be treated as safely inside the
+   installation directory.
+[1m   CVE-2026-1703[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/85681/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 85681 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pip version 24.0[0m
+[1m   Vulnerability ID: [0mSFTY-20260420-60812
+[1m   Affected spec: [0m<=26.0.1
+[1m   ADVISORY: [0mAffected versions of the `pip` package are vulnerable to
+   Interpretation Conflict due to handling both concatenated tar and ZIP
+   files as ZIP files. The `pip` installer incorrectly interprets
+   concatenated tar and ZIP files as ZIP files, regardless of the filename or
+   the file's dual nature as both a tar and ZIP archive. An attacker can
+   exploit this by providing a specially crafted archive that leads to
+   confusing installation behaviour, potentially installing unintended files
+   based on the archive's filename.
+[1m   CVE-2026-3219[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20260420-60812/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20260420-60812 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pip version 24.0[0m
+[1m   Vulnerability ID: [0m75180
+[1m   Affected spec: [0m<25.0
+[1m   ADVISORY: [0mPip solves a security vulnerability that previously
+   allowed maliciously crafted wheel files to execute unauthorized code
+   during installation.
+[1m   PVE-2025-75180[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/75180/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 75180 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pip version 24.0[0m
+[1m   Vulnerability ID: [0mSFTY-20260601-69199
+[1m   Affected spec: [0m<26.1.2
+[1m   ADVISORY: [0mAffected versions of the `pip` package are vulnerable to
+   Path Traversal due to improper sanitization of entry point names in
+   `console_scripts` and `gui_scripts`. The `pip` installer treats these
+   entry point names as paths rather than file names, failing to sanitize the
+   resolved absolute path to the installation directory. An attacker can
+   exploit this by crafting a package with malicious entry point names,
+   allowing the installation of scripts outside the intended directory,
+   potentially leading to unauthorized code execution.
+[1m   CVE-2026-8643[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20260601-69199/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20260601-69199 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pip version 24.0[0m
+[1m   Vulnerability ID: [0m79883
+[1m   Affected spec: [0m<25.2
+[1m   ADVISORY: [0mAffected versions of the pip package are vulnerable to
+   Arbitrary File Overwrite due to improper validation of symbolic link
+   targets in the fallback tar extraction code. In
+   src/pip/_internal/utils/unpacking.py, the _untar_without_filter routine
+   used when the Python tarfile module lacks PEP 706 (no tarfile.data_filter)
+   extracted symlink members with tar._extract_member without verifying that
+   link destinations resolve under the extraction root, a check later added
+   via the is_symlink_target_in_tar helper.
+[1m   CVE-2025-8869[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/79883/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 79883 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pip version 24.0[0m
+[1m   Vulnerability ID: [0mSFTY-20260427-69629
+[1m   Affected spec: [0m<26.1
+[1m   ADVISORY: [0mAffected versions of the `pip` package are vulnerable to
+   Inclusion of Functionality from Untrusted Control Sphere due to the
+   deferred import of well-known Python module names. The self-update check
+   functionality, which runs after installing wheel files, requires importing
+   these modules, creating a risk if a newly-installed module with the same
+   name is malicious. An attacker can exploit this by crafting a malicious
+   package with module names that match those required by the self-update
+   functionality, potentially executing arbitrary code upon installation.
+[1m   CVE-2026-6357[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20260427-69629/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20260427-69629 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in jinja2 version 3.1.2[0m
+[1m   Vulnerability ID: [0m76378
+[1m   Affected spec: [0m<3.1.5
+[1m   ADVISORY: [0mAn oversight in how the Jinja sandboxed environment
+   detects calls to str.format allows an attacker who controls the content of
+   a template to execute arbitrary Python code. To exploit the vulnerability,
+   an attacker needs to control the content of a template. Whether that is
+   the case depends on the type of application using Jinja. This
+   vulnerability impacts users of applications which execute untrusted
+   templates. Jinja's sandbox does catch calls to str.format and ensures they
+   don't escape the sandbox. However, it's possible to store a reference to a
+   malicious string's format method, then pass that to a filter that calls
+   it. No such filters are built-in to Jinja, but could be present through
+   custom filters in an application. After the fix, such indirect calls are
+   also handled by the sandbox.
+[1m   CVE-2024-56326[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/76378/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 76378 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in jinja2 version 3.1.2[0m
+[1m   Vulnerability ID: [0m74735
+[1m   Affected spec: [0m>=3.0.0a1,<3.1.5
+[1m   ADVISORY: [0mA vulnerability in the Jinja compiler allows an attacker
+   who can control both the content and filename of a template to execute
+   arbitrary Python code, bypassing Jinja's sandbox protections. To exploit
+   this vulnerability, an attacker must have the ability to manipulate both
+   the template's filename and its contents. The risk depends on the
+   application's specific use case. This issue affects applications that
+   render untrusted templates where the attacker can determine the template
+   filename, potentially leading to severe security breaches.
+[1m   CVE-2024-56201[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/74735/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 74735 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in jinja2 version 3.1.2[0m
+[1m   Vulnerability ID: [0m71591
+[1m   Affected spec: [0m<3.1.4
+[1m   ADVISORY: [0mJinja is an extensible templating engine. The `xmlattr`
+   filter in affected versions of Jinja accepts keys containing non-attribute
+   characters. XML/HTML attributes cannot contain spaces, `/`, `>`, or `=`,
+   as each would then be interpreted as starting a separate attribute. If an
+   application accepts keys (as opposed to only values) as user input, and
+   renders these in pages that other users see as well, an attacker could use
+   this to inject other attributes and perform XSS. The fix for
+   CVE-2024-22195 only addressed spaces but not other characters. Accepting
+   keys as user input is now explicitly considered an unintended use case of
+   the `xmlattr` filter, and code that does so without otherwise validating
+   the input should be flagged as insecure, regardless of Jinja version.
+   Accepting _values_ as user input continues to be safe.
+[1m   CVE-2024-34064[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/71591/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 71591 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in jinja2 version 3.1.2[0m
+[1m   Vulnerability ID: [0m64227
+[1m   Affected spec: [0m<3.1.3
+[1m   ADVISORY: [0mJinja is an extensible templating engine. Special
+   placeholders in the template allow writing code similar to Python syntax.
+   It is possible to inject arbitrary HTML attributes into the rendered HTML
+   template, potentially leading to Cross-Site Scripting (XSS). The Jinja
+   `xmlattr` filter can be abused to inject arbitrary HTML attribute keys and
+   values, bypassing the auto escaping mechanism and potentially leading to
+   XSS. It may also be possible to bypass attribute validation checks if they
+   are blacklist-based.
+[1m   CVE-2024-22195[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/64227/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 64227 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in jinja2 version 3.1.2[0m
+[1m   Vulnerability ID: [0m75976
+[1m   Affected spec: [0m<3.1.6
+[1m   ADVISORY: [0mPrior to 3.1.6, an oversight in how the Jinja sandboxed
+   environment interacts with the |attr filter allows an attacker that
+   controls the content of a template to execute arbitrary Python code. To
+   exploit the vulnerability, an attacker needs to control the content of a
+   template. Whether that is the case depends on the type of application
+   using Jinja. This vulnerability impacts users of applications which
+   execute untrusted templates. Jinja's sandbox does catch calls to
+   str.format and ensures they don't escape the sandbox. However, it's
+   possible to use the |attr filter to get a reference to a string's plain
+   format method, bypassing the sandbox. After the fix, the |attr filter no
+   longer bypasses the environment's attribute lookup. This vulnerability is
+   fixed in 3.1.6.
+[1m   CVE-2025-27516[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/75976/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 75976 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pyjwt version 2.7.0[0m
+[1m   Vulnerability ID: [0mSFTY-20260615-71642
+[1m   Affected spec: [0m<2.13.0
+[1m   ADVISORY: [0mAffected versions of the PyJWT package are vulnerable to
+   an Algorithm Confusion attack due to improper validation of JSON Web Keys
+   (JWKs) when used with HMAC algorithms. The `decode` method in PyJWT fails
+   to distinguish between public keys and secret keys when both symmetric
+   (HMAC) and asymmetric algorithms are allowed, leading to the acceptance of
+   a public key as an HMAC secret. An attacker can exploit this by crafting a
+   token with an HMAC algorithm header and using a public JWK as the secret,
+   allowing them to forge tokens and impersonate users, potentially bypassing
+   authorization controls.
+[1m   CVE-2026-48526[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20260615-71642/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20260615-71642 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pyjwt version 2.7.0[0m
+[1m   Vulnerability ID: [0mSFTY-20260615-85895
+[1m   Affected spec: [0m<=2.12.1
+[1m   ADVISORY: [0mAffected versions of the PyJWKClient package are
+   vulnerable to Server-Side Request Forgery (SSRF) due to a missing scheme
+   allowlist. The `uri` argument is passed directly to
+   `urllib.request.urlopen()`, which by default supports multiple URI schemes
+   including `file://`, `ftp://`, and `data:`, without restriction. An
+   attacker can exploit this vulnerability by providing a crafted `jku` URL,
+   potentially leading to unauthorized file reads or token forgery if they
+   have write access to a filesystem path and can control the URL.
+[1m   CVE-2026-48522[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20260615-85895/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20260615-85895 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pyjwt version 2.7.0[0m
+[1m   Vulnerability ID: [0mSFTY-20260615-82927
+[1m   Affected spec: [0m<=2.12.1
+[1m   ADVISORY: [0mAffected versions of the PyJWKClient package are
+   vulnerable to Denial of Service (DoS) due to unbounded JWKS endpoint
+   requests. The `get_signing_key` method forces a new HTTP request to the
+   JWKS endpoint for each JWT with an unknown `kid` value, bypassing the TTL
+   cache and lacking rate limiting. An attacker can exploit this by sending
+   numerous JWTs with arbitrary `kid` values, causing excessive outbound
+   requests and potentially leading to reduced authentication
+   availability.Note: The vulnerability surfaces only when a JWKS fetch
+   fails; an attacker can attempt to provoke that with sustained unknown-kid
+   traffic, but the outcome depends on upstream JWKS-endpoint behaviour (rate
+   limiting, transient errors), which is beyond the attacker's control.
+[1m   CVE-2026-48524[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20260615-82927/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20260615-82927 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pyjwt version 2.7.0[0m
+[1m   Vulnerability ID: [0m89028
+[1m   Affected spec: [0m<2.12.0
+[1m   ADVISORY: [0mAffected versions of this package are vulnerable to
+   Insufficient Verification of Data Authenticity. The library does not
+   validate the `crit` (Critical) Header Parameter as required by RFC 7515
+   §4.1.11 — when a JWT contains a `crit` array listing extensions that the
+   library does not understand, the token is accepted instead of rejected. An
+   attacker can exploit this vulnerability by crafting JWTs with unknown
+   critical extensions (e.g., MFA requirements, token binding, scope
+   restrictions) that are silently ignored, potentially bypassing security
+   policies or causing split-brain verification in mixed-library deployments
+   where other RFC-compliant libraries would reject the same token.
+[1m   CVE-2026-32597[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/89028/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 89028 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in setuptools version 68.1.2[0m
+[1m   Vulnerability ID: [0m76752
+[1m   Affected spec: [0m<78.1.1
+[1m   ADVISORY: [0mAffected versions of Setuptools are vulnerable to Path
+   Traversal via PackageIndex.download(). The impact is Arbitrary File
+   Overwrite: An attacker would be allowed to write files to arbitrary
+   locations on the filesystem with the permissions of the process running
+   the Python code, which could escalate to RCE depending on the context.
+[1m   CVE-2025-47273[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/76752/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 76752 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in setuptools version 68.1.2[0m
+[1m   Vulnerability ID: [0m72236
+[1m   Affected spec: [0m<70.0.0
+[1m   ADVISORY: [0mAffected versions of Setuptools allow for remote code
+   execution via its download functions. These functions, which are used to
+   download packages from URLs provided by users or retrieved from package
+   index servers, are susceptible to code injection. If these functions are
+   exposed to user-controlled inputs, such as package URLs, they can execute
+   arbitrary commands on the system.
+[1m   CVE-2024-6345[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/72236/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 72236 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in requests version 2.31.0[0m
+[1m   Vulnerability ID: [0m90553
+[1m   Affected spec: [0m<2.33.0
+[1m   ADVISORY: [0mAffected versions of the requests package are vulnerable
+   to Insecure Temporary File reuse due to predictable temporary filename
+   generation in extract_zipped_paths(). The
+   requests.utils.extract_zipped_paths() utility extracts files from zip
+   archives into the system temporary directory using a deterministic path,
+   and if that file already exists, the function reuses it without validating
+   that it is the expected extracted content.
+[1m   CVE-2026-25645[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/90553/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 90553 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in requests version 2.31.0[0m
+[1m   Vulnerability ID: [0m77680
+[1m   Affected spec: [0m<2.32.4
+[1m   ADVISORY: [0mRequests is an HTTP library. Due to a URL parsing issue,
+   Requests releases prior to 2.32.4 may leak .netrc credentials to third
+   parties for specific maliciously-crafted URLs. Users should upgrade to
+   version 2.32.4 to receive a fix. For older versions of Requests, use of
+   the .netrc file can be disabled with `trust_env=False` on one's Requests
+   Session.
+[1m   CVE-2024-47081[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/77680/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 77680 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in requests version 2.31.0[0m
+[1m   Vulnerability ID: [0m71064
+[1m   Affected spec: [0m<2.32.2
+[1m   ADVISORY: [0mAffected versions of Requests, when making requests
+   through a Requests `Session`, if the first request is made with
+   `verify=False` to disable cert verification, all subsequent requests to
+   the same host will continue to ignore cert verification regardless of
+   changes to the value of `verify`. This behavior will continue for the
+   lifecycle of the connection in the connection pool. Requests 2.32.0 fixes
+   the issue, but versions 2.32.0 and 2.32.1 were yanked due to conflicts
+   with CVE-2024-35195 mitigation.
+[1m   CVE-2024-35195[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/71064/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 71064 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pyopenssl version 23.2.0[0m
+[1m   Vulnerability ID: [0m89484
+[1m   Affected spec: [0m>=22.0.0,<26.0.0
+[1m   ADVISORY: [0mAffected versions of the pyOpenSSL package are
+   vulnerable to Classic Buffer Overflow due to missing length validation on
+   DTLS cookie values returned by a user-provided callback. The vulnerability
+   is in the DTLS cookie generation path that uses
+   set_cookie_generate_callback, where pyOpenSSL passes the callback’s return
+   value into an OpenSSL-provided buffer without rejecting values longer than
+   256 bytes.
+[1m   CVE-2026-27459[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/89484/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 89484 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pyopenssl version 23.2.0[0m
+[1m   Vulnerability ID: [0m89421
+[1m   Affected spec: [0m>=0.14.0,<26.0.0
+[1m   ADVISORY: [0mAffected versions of the pyOpenSSL package are
+   vulnerable to Improper Input Validation due to a failure to securely
+   handle exceptions in a user-supplied callback. The
+   set_tlsext_servername_callback API accepts a callback that, in affected
+   versions, allows an unhandled exception to cause the TLS connection to be
+   accepted instead of rejected, creating a fail-open condition in any
+   security-sensitive logic implemented in that callback.
+[1m   CVE-2026-27448[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/89421/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 89421 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pygments version 2.17.2[0m
+[1m   Vulnerability ID: [0mSFTY-20260322-35073
+[1m   Affected spec: [0m<2.20.0
+[1m   ADVISORY: [0mA security flaw has been discovered in pygments before
+   2.20.0. The impacted element is the function AdlLexer of the file
+   pygments/lexers/archetype.py. The manipulation results in inefficient
+   regular expression complexity. The attack is only possible with local
+   access. The exploit has been released to the public and may be used for
+   attacks. The project was informed of the problem early through an issue
+   report but has not responded yet.
+[1m   CVE-2026-4539[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20260322-35073/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20260322-35073 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in urllib3 version 2.0.7[0m
+[1m   Vulnerability ID: [0m71608
+[1m   Affected spec: [0m>=2.0.0a1,<=2.2.1
+[1m   ADVISORY: [0mUrllib3's ProxyManager ensures that the Proxy-
+   Authorization header is correctly directed only to configured proxies.
+   However, when HTTP requests bypass urllib3's proxy support, there's a risk
+   of inadvertently setting the Proxy-Authorization header, which remains
+   ineffective without a forwarding or tunneling proxy. Urllib3 does not
+   recognize this header as carrying authentication data, failing to remove
+   it during cross-origin redirects. While this scenario is uncommon and
+   poses low risk to most users, urllib3 now proactively removes the Proxy-
+   Authorization header during cross-origin redirects as a precautionary
+   measure. Users are advised to utilize urllib3's proxy support or disable
+   automatic redirects to handle the Proxy-Authorization header securely.
+   Despite these precautions, urllib3 defaults to stripping the header to
+   safeguard users who may inadvertently misconfigure requests.
+[1m   CVE-2024-37891[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/71608/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 71608 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in urllib3 version 2.0.7[0m
+[1m   Vulnerability ID: [0m82331
+[1m   Affected spec: [0m>=1.24,<2.6.0
+[1m   ADVISORY: [0mAffected versions of the urllib3 package are vulnerable
+   to Denial of Service (DoS) due to allowing an unbounded number of content-
+   encoding decompression steps for HTTP responses. The HTTPResponse content
+   decoding pipeline in urllib3 follows the Content-Encoding header and
+   applies each advertised compression algorithm in sequence without
+   enforcing a maximum chain length or effective output size, so a malicious
+   peer can send a response with a very long encoding chain that triggers
+   excessive CPU use and massive memory allocation during decompression.
+[1m   CVE-2025-66418[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/82331/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 82331 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in urllib3 version 2.0.7[0m
+[1m   Vulnerability ID: [0m96886
+[1m   Affected spec: [0m>=1.23,<2.7.0
+[1m   ADVISORY: [0mAffected versions of the urllib3 package are vulnerable
+   to Information Disclosure due to improper handling of sensitive headers
+   during cross-origin redirects in the low-level proxy API. When following
+   cross-origin redirects via ProxyManager.connection_from_url().urlopen()
+   with assert_same_host=False, sensitive headers including Authorization,
+   Cookie, and Proxy-Authorization are not stripped, unlike the high-level
+   API, which removes them via Retry.DEFAULT_REMOVE_HEADERS_ON_REDIRECT. An
+   attacker controlling a redirect target can capture these sensitive headers
+   from requests that follow cross-origin redirects through the low-level
+   proxy API path.
+[1m   CVE-2026-44431[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/96886/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 96886 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in urllib3 version 2.0.7[0m
+[1m   Vulnerability ID: [0m77744
+[1m   Affected spec: [0m<2.5.0
+[1m   ADVISORY: [0murllib3 is a user-friendly HTTP client library for
+   Python. Prior to 2.5.0, it is possible to disable redirects for all
+   requests by instantiating a PoolManager and specifying retries in a way
+   that disable redirects. By default, requests and botocore users are not
+   affected. An application attempting to mitigate SSRF or open redirect
+   vulnerabilities by disabling redirects at the PoolManager level will
+   remain vulnerable. This issue has been patched in version 2.5.0.
+[1m   CVE-2025-50181[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/77744/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 77744 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in urllib3 version 2.0.7[0m
+[1m   Vulnerability ID: [0m84031
+[1m   Affected spec: [0m>=1.22,<2.6.3
+[1m   ADVISORY: [0mAffected versions of the urllib3 package are vulnerable
+   to Denial of Service (DoS) due to redirect handling that drains
+   connections by decompressing redirect response bodies without enforcing
+   streaming read limits. The issue occurs when using urllib3’s streaming
+   mode (for example, preload_content=False) while allowing redirects,
+   because urllib3.response.HTTPResponse.drain_conn() would call
+   HTTPResponse.read() in a way that decoded/decompressed the entire redirect
+   response body even before any streaming reads were performed, effectively
+   bypassing decompression-bomb safeguards.
+[1m   CVE-2026-21441[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/84031/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 84031 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in urllib3 version 2.0.7[0m
+[1m   Vulnerability ID: [0m82332
+[1m   Affected spec: [0m>=1.0,<2.6.0
+[1m   ADVISORY: [0mAffected versions of the urllib3 package are vulnerable
+   to Denial of Service (DoS) due to improper handling of highly compressed
+   HTTP response bodies during streaming decompression. The
+   urllib3.HTTPResponse methods stream(), read(), read1(), read_chunked(),
+   and readinto() may fully decompress a minimal but highly compressed
+   payload based on the Content-Encoding header into an internal buffer
+   instead of limiting the decompressed output to the requested chunk size,
+   causing excessive CPU usage and massive memory allocation on the client
+   side.
+[1m   CVE-2025-66471[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/82332/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 82332 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pyasn1 version 0.4.8[0m
+[1m   Vulnerability ID: [0m89623
+[1m   Affected spec: [0m<0.6.3
+[1m   ADVISORY: [0mAffected versions of the pyasn1 package are vulnerable
+   to Denial of Service (DoS) due to uncontrolled recursion when decoding
+   deeply nested ASN.1 data. The vulnerability exists in the BER decoder’s
+   indefLenValueDecoder, valueDecoder, and _decodeComponentsSchemaless code
+   paths, where decodeFun is recursively invoked for nested SEQUENCE, SET,
+   SEQUENCE OF, and SET OF elements without enforcing a recursion-depth
+   limit.
+[1m   CVE-2026-30922[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/89623/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 89623 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in twisted version 24.3.0[0m
+[1m   Vulnerability ID: [0m73795
+[1m   Affected spec: [0m<24.7.0rc1
+[1m   ADVISORY: [0mAffected versions of Twisted are vulnerable to XSS. The
+   `twisted.web.util.redirectTo` function contains an HTML injection
+   vulnerability. If application code allows an attacker to control the
+   redirect URL this vulnerability may result in Reflected Cross-Site
+   Scripting (XSS) in the redirect response HTML body.
+[1m   CVE-2024-41810[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/73795/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 73795 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in twisted version 24.3.0[0m
+[1m   Vulnerability ID: [0m73800
+[1m   Affected spec: [0m<24.7.0rc1
+[1m   ADVISORY: [0mAffected versions of Twisted are vulnerable to HTTP
+   Request Smuggling. The HTTP 1.0 and 1.1 server provided by twisted.web
+   could process pipelined HTTP requests out-of-order, possibly resulting in
+   information disclosure.
+[1m   CVE-2024-41671[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/73800/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 73800 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in twisted version 24.3.0[0m
+[1m   Vulnerability ID: [0m96035
+[1m   Affected spec: [0m<=25.5.0
+[1m   ADVISORY: [0mAffected versions of the Twisted package are vulnerable
+   to Denial of Service due to unbounded resource consumption when decoding
+   DNS names with chained compression pointers. The Name.decode method in
+   src/twisted/names/dns.py enforces no per-message limit on pointer
+   dereferences and resets its visited set for each Question record, while
+   DNSServerFactory processes every record in QDCOUNT without validating it,
+   so a Message containing thousands of questions that all reference a long
+   shared chain of compression pointers forces the parser into millions of
+   redundant traversals.
+[1m   CVE-2026-42304[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/96035/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 96035 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in wheel version 0.42.0[0m
+[1m   Vulnerability ID: [0m84961
+[1m   Affected spec: [0m>=0.40.0,<=0.46.1
+[1m   ADVISORY: [0mAffected versions of the wheel package are vulnerable to
+   Path Traversal due to applying extracted file permissions using an
+   unsanitized archive pathname. The vulnerable logic is in
+   wheel.cli.unpack.unpack (and setuptools._vendor.wheel.cli.unpack.unpack),
+   where the code calls wf.extract(zinfo, destination) but then performs
+   destination.joinpath(zinfo.filename).chmod(permissions) using
+   zinfo.filename directly, allowing dot-dot-slash sequences to escape the
+   intended directory.
+[1m   CVE-2026-24049[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/84961/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 84961 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in certifi version 2023.11.17[0m
+[1m   Vulnerability ID: [0m72083
+[1m   Affected spec: [0m>=2021.05.30,<2024.07.04
+[1m   ADVISORY: [0mCertifi affected versions recognized root certificates
+   from GLOBALTRUST. Certifi patch removes these root certificates from the
+   root store. These certificates are being removed pursuant to an
+   investigation that identified "long-running and unresolved compliance
+   issues" and are also in the process of being removed from Mozilla's trust
+   store.
+[1m   CVE-2024-39689[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/72083/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 72083 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in idna version 3.6[0m
+[1m   Vulnerability ID: [0m98479
+[1m   Affected spec: [0m<3.15
+[1m   ADVISORY: [0mAffected versions of the idna package are vulnerable to
+   Denial of Service due to an incomplete fix for CVE-2024-3651 that still
+   allows specially crafted inputs to consume significant resources during
+   encoding. The idna.encode() function invokes the valid_contexto validator
+   on every label before applying length-based rejection, so payloads such as
+   long repetitions of the Arabic-Indic digit U+0660 or sequences of the
+   Katakana middle dot U+30FB followed by a CJK character cause
+   valid_contexto to perform extensive context-rule processing across each
+   character. A remote attacker who can supply domain-name input to an
+   application that calls idna.encode() without first enforcing the
+   253-character DNS length limit can submit arbitrarily large strings that
+   drive the validator to exhaust CPU time, resulting in Denial of Service
+   through resource consumption.
+[1m   CVE-2026-45409[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/98479/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 98479 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in idna version 3.6[0m
+[1m   Vulnerability ID: [0m67895
+[1m   Affected spec: [0m<3.7
+[1m   ADVISORY: [0mAffected versions of Idna are vulnerable to Denial Of
+   Service via the idna.encode(), where a specially crafted argument could
+   lead to significant resource consumption. In version 3.7, this function
+   has been updated to reject such inputs efficiently, minimizing resource
+   use. A practical workaround involves enforcing a maximum domain name
+   length of 253 characters before encoding, as the vulnerability is
+   triggered by unusually large inputs that normal operations wouldn't
+   encounter.
+[1m   CVE-2024-3651[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/67895/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 67895 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0m65647
+[1m   Affected spec: [0m<42.0.5
+[1m   ADVISORY: [0mCryptography version 42.0.5 introduces a limit on the
+   number of name constraint checks during X.509 path validation to prevent
+   denial of service attacks.https://github.com/pyca/cryptography/commit/4be5
+   3bf20cc90cbac01f5f94c5d1aecc5289ba1f
+[1m   PVE-2024-65647[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/65647/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 65647 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0m65212
+[1m   Affected spec: [0m>=35.0.0,<42.0.2
+[1m   ADVISORY: [0mVersions of Cryptograph starting from 35.0.0 are
+   susceptible to a security flaw in the POLY1305 MAC algorithm on PowerPC
+   CPUs, which allows an attacker to disrupt the application's state. This
+   disruption might result in false calculations or cause a denial of
+   service. The vulnerability's exploitation hinges on the attacker's ability
+   to alter the algorithm's application and the dependency of the software on
+   non-volatile XMM registers.https://github.com/pyca/cryptography/commit/89d
+   0d56fb104ac4e0e6db63d78fc22b8c53d27e9
+[1m   CVE-2023-6129[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/65212/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 65212 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0m86217
+[1m   Affected spec: [0m<46.0.5
+[1m   ADVISORY: [0mAffected versions of the cryptography package are
+   vulnerable to Improper Input Validation due to missing prime-order
+   subgroup validation for SECT elliptic-curve points. The
+   public_key_from_numbers, EllipticCurvePublicNumbers.public_key(),
+   load_der_public_key(), and load_pem_public_key() entry points accept
+   attacker-supplied public keys without verifying that the provided point
+   lies in the expected prime-order subgroup, enabling small-subgroup points
+   to pass as valid.
+[1m   CVE-2026-26007[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/86217/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 86217 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0mSFTY-20240205-03700
+[1m   Affected spec: [0m<42.0.0
+[1m   ADVISORY: [0mAffected versions of the Cryptography package are
+   vulnerable to Information Disclosure due to improper handling of RSA key
+   exchanges in TLS servers. The `decrypt` function in the RSA module fails
+   to properly secure the key exchange process, allowing potential exposure
+   of encrypted data. An attacker can exploit this vulnerability by capturing
+   encrypted messages and using the flaw to decrypt them, leading to the
+   exposure of confidential or sensitive data.
+[1m   CVE-2023-50782[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20240205-03700/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20240205-03700 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0mSFTY-20260327-04621
+[1m   Affected spec: [0m<46.0.6
+[1m   ADVISORY: [0mAffected versions of the cryptography package are
+   vulnerable to Improper Certificate Validation due to incomplete
+   enforcement of DNS name constraints on peer names. The certificate
+   validation logic applies DNS name constraints only to the Subject
+   Alternative Name (SAN) entries in child certificates, failing to enforce
+   the same checks on the peer name presented during validation, which
+   results in a mismatch between wildcard certificate matching and excluded
+   subtree constraints. An attacker can exploit this by presenting a
+   certificate with a wildcard domain that bypasses the intended constraints,
+   potentially allowing unauthorized access to restricted domains.
+[1m   CVE-2026-34073[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20260327-04621/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20260327-04621 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0m66704
+[1m   Affected spec: [0m>=38.0.0,<42.0.4
+[1m   ADVISORY: [0mcryptography is a package designed to expose
+   cryptographic primitives and recipes to Python developers. Starting in
+   version 38.0.0 and before version 42.0.4, if
+   `pkcs12.serialize_key_and_certificates` is called with both a certificate
+   whose public key did not match the provided private key and an
+   `encryption_algorithm` with `hmac_hash` set (via
+   `PrivateFormat.PKCS12.encryption_builder().hmac_hash(...)`, then a NULL
+   pointer dereference would occur, crashing the Python process. This has
+   been resolved in version 42.0.4, the first version in which a `ValueError`
+   is properly raised.
+[1m   CVE-2024-26130[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/66704/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 66704 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0mSFTY-20260615-96125
+[1m   Affected spec: [0m>=0.5.0,<48.0.1
+[1m   ADVISORY: [0mAffected versions of the `pyca/cryptography` package are
+   vulnerable to Information Disclosure due to the inclusion of a statically
+   linked copy of OpenSSL with known security issues. The vulnerability
+   exists because the wheels distributed on PyPI include an outdated version
+   of OpenSSL that contains a security flaw. An attacker can exploit this by
+   leveraging the underlying OpenSSL vulnerability to potentially access
+   sensitive information processed by applications using the affected
+   `pyca/cryptography` wheels.
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20260615-96125/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20260615-96125 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0m65647
+[1m   Affected spec: [0m<42.0.5
+[1m   ADVISORY: [0mCryptography version 42.0.5 introduces a limit on the
+   number of name constraint checks during X.509 path validation to prevent
+   denial of service attacks.https://github.com/pyca/cryptography/commit/4be5
+   3bf20cc90cbac01f5f94c5d1aecc5289ba1f
+[1m   PVE-2024-65647[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/65647/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 65647 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0m65212
+[1m   Affected spec: [0m>=35.0.0,<42.0.2
+[1m   ADVISORY: [0mVersions of Cryptograph starting from 35.0.0 are
+   susceptible to a security flaw in the POLY1305 MAC algorithm on PowerPC
+   CPUs, which allows an attacker to disrupt the application's state. This
+   disruption might result in false calculations or cause a denial of
+   service. The vulnerability's exploitation hinges on the attacker's ability
+   to alter the algorithm's application and the dependency of the software on
+   non-volatile XMM registers.https://github.com/pyca/cryptography/commit/89d
+   0d56fb104ac4e0e6db63d78fc22b8c53d27e9
+[1m   CVE-2023-6129[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/65212/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 65212 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0m86217
+[1m   Affected spec: [0m<46.0.5
+[1m   ADVISORY: [0mAffected versions of the cryptography package are
+   vulnerable to Improper Input Validation due to missing prime-order
+   subgroup validation for SECT elliptic-curve points. The
+   public_key_from_numbers, EllipticCurvePublicNumbers.public_key(),
+   load_der_public_key(), and load_pem_public_key() entry points accept
+   attacker-supplied public keys without verifying that the provided point
+   lies in the expected prime-order subgroup, enabling small-subgroup points
+   to pass as valid.
+[1m   CVE-2026-26007[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/86217/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 86217 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0mSFTY-20240205-03700
+[1m   Affected spec: [0m<42.0.0
+[1m   ADVISORY: [0mAffected versions of the Cryptography package are
+   vulnerable to Information Disclosure due to improper handling of RSA key
+   exchanges in TLS servers. The `decrypt` function in the RSA module fails
+   to properly secure the key exchange process, allowing potential exposure
+   of encrypted data. An attacker can exploit this vulnerability by capturing
+   encrypted messages and using the flaw to decrypt them, leading to the
+   exposure of confidential or sensitive data.
+[1m   CVE-2023-50782[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20240205-03700/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20240205-03700 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0mSFTY-20260327-04621
+[1m   Affected spec: [0m<46.0.6
+[1m   ADVISORY: [0mAffected versions of the cryptography package are
+   vulnerable to Improper Certificate Validation due to incomplete
+   enforcement of DNS name constraints on peer names. The certificate
+   validation logic applies DNS name constraints only to the Subject
+   Alternative Name (SAN) entries in child certificates, failing to enforce
+   the same checks on the peer name presented during validation, which
+   results in a mismatch between wildcard certificate matching and excluded
+   subtree constraints. An attacker can exploit this by presenting a
+   certificate with a wildcard domain that bypasses the intended constraints,
+   potentially allowing unauthorized access to restricted domains.
+[1m   CVE-2026-34073[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20260327-04621/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20260327-04621 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0m66704
+[1m   Affected spec: [0m>=38.0.0,<42.0.4
+[1m   ADVISORY: [0mcryptography is a package designed to expose
+   cryptographic primitives and recipes to Python developers. Starting in
+   version 38.0.0 and before version 42.0.4, if
+   `pkcs12.serialize_key_and_certificates` is called with both a certificate
+   whose public key did not match the provided private key and an
+   `encryption_algorithm` with `hmac_hash` set (via
+   `PrivateFormat.PKCS12.encryption_builder().hmac_hash(...)`, then a NULL
+   pointer dereference would occur, crashing the Python process. This has
+   been resolved in version 42.0.4, the first version in which a `ValueError`
+   is properly raised.
+[1m   CVE-2024-26130[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/66704/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 66704 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in cryptography version 41.0.7[0m
+[1m   Vulnerability ID: [0mSFTY-20260615-96125
+[1m   Affected spec: [0m>=0.5.0,<48.0.1
+[1m   ADVISORY: [0mAffected versions of the `pyca/cryptography` package are
+   vulnerable to Information Disclosure due to the inclusion of a statically
+   linked copy of OpenSSL with known security issues. The vulnerability
+   exists because the wheels distributed on PyPI include an outdated version
+   of OpenSSL that contains a security flaw. An attacker can exploit this by
+   leveraging the underlying OpenSSL vulnerability to potentially access
+   sensitive information processed by applications using the affected
+   `pyca/cryptography` wheels.
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20260615-96125/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20260615-96125 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in flask version 3.0.3[0m
+[1m   Vulnerability ID: [0m86909
+[1m   Affected spec: [0m<3.1.3
+[1m   ADVISORY: [0mAffected versions of the Flask package are vulnerable to
+   Information Disclosure due to missing cache-variation headers when the
+   session object is accessed via certain code paths. In Flask’s session
+   handling, accessing flask.session is intended to set a Vary: Cookie
+   response header, but session key-only access patterns (such as using the
+   Python in operator to test for a key without reading or mutating session
+   values) can bypass the logic that adds the header.
+[1m   CVE-2026-27205[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/86909/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 86909 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in pytest version 8.3.3[0m
+[1m   Vulnerability ID: [0mSFTY-20260122-20373
+[1m   Affected spec: [0m<9.0.3
+[1m   ADVISORY: [0mAffected versions of the `pytest` package are vulnerable
+   to Denial of Service (DoS) due to insecure temporary directory handling.
+   The `tmpdir` fixture relies on directories with the `/tmp/pytest-
+   of-{user}` name pattern, which can be predictably created and manipulated
+   by local users. An attacker can exploit this by pre-creating these
+   directories with restrictive permissions or malicious content, potentially
+   causing test failures or privilege escalation when the tests are executed.
+[1m   CVE-2025-71176[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/SFTY-20260122-20373/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id
+   SFTY-20260122-20373 in safety’s ignore command-line argument or add the
+   ignore to your safety policy file.
+
+
++==============================================================================+
+   [32m[1mREMEDIATIONS[0m
+
+  54 vulnerabilities were reported in 17 packages. For detailed remediation & 
+  fix recommendations, upgrade to a commercial license. 
+
++==============================================================================+
+
+ Scan was completed. 54 vulnerabilities were reported. 
+
++==============================================================================+[0m
+
+
+[33m[1m+===========================================================================================================================================================================================+[0m
+
+
+[31m[1mDEPRECATED: [0m[33m[1mthis command (`check`) has been DEPRECATED, and will be unsupported beyond 01 June 2024.[0m
+
+
+[32mWe highly encourage switching to the new [0m[32m[1m`scan`[0m[32m command which is easier to use, more powerful, and can be set up to mimic the deprecated command if required.[0m
+
+
+[33m[1m+===========================================================================================================================================================================================+[0m
+
+

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus IQ Dependency Audit Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Outfit', sans-serif; }
+        body { background: var(--bg-gradient); color: var(--text-primary); min-height: 100vh; padding: 2rem 1.5rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--card-border);
+        }
+        .title-group h1 {
+            font-size: 2.2rem; font-weight: 700;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .title-group p { color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.25rem; }
+
+        .qg-banner {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 1.5rem 2rem; border-radius: 16px; margin-bottom: 2rem;
+            backdrop-filter: blur(12px); border: 1px solid rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.15);
+        }
+        .qg-icon-circle {
+            width: 50px; height: 50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; font-weight: bold; background: rgba(16, 185, 129, 0.25); color: var(--accent-green);
+        }
+
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-bottom: 2rem; }
+        .kpi-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 1.25rem; backdrop-filter: blur(10px); }
+        .kpi-title { color: var(--text-secondary); font-size: 0.85rem; font-weight: 500; text-transform: uppercase; }
+        .kpi-value { font-size: 1.6rem; font-weight: 700; margin-top: 0.5rem; word-break: break-all; }
+
+        .section-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 1.5rem; backdrop-filter: blur(10px); }
+        table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+        td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.9rem; }
+        code { color: #a78bfa; font-family: monospace; word-break: break-all; }
+
+        footer { text-align: center; color: var(--text-secondary); font-size: 0.85rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="title-group">
+                <h1>Nexus IQ Dependency Policy Report</h1>
+                <p>Third-Party Component Vulnerability & License Compliance Audit</p>
+            </div>
+        </header>
+
+        <div class="qg-banner">
+            <div class="qg-icon-circle">✓</div>
+            <div>
+                <h2>Dependency Policy Audit: COMPLETED</h2>
+                <p>Third-party libraries evaluated against open-source vulnerability databases and organization policies.</p>
+            </div>
+        </div>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-title">Application ID</div>
+                <div class="kpi-value" style="color: var(--accent-cyan);"></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Lifecycle Stage</div>
+                <div class="kpi-value" style="color: var(--accent-purple);">build</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Nexus Server</div>
+                <div class="kpi-value" style="font-size: 1.1rem; color: var(--text-secondary);">Offline Mode</div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h3 style="margin-bottom: 1rem;">Policy Audit Log Output</h3>
+            <table>
+                <tbody>
+                    <tr><td><code>/home/runner/.local/lib/python3.12/site-packages/safety/auth/main.py:5: AuthlibDeprecationWarning: authlib.jose module is deprecated, please use joserfc instead.</code></td></tr><tr><td><code>It will be compatible before version 2.0.0.</code></td></tr><tr><td><code>from authlib.jose.errors import ExpiredTokenError</code></td></tr><tr><td><code>[33m[1m+===========================================================================================================================================================================================+[0m</code></td></tr><tr><td><code>[31m[1mDEPRECATED: [0m[33m[1mthis command (`check`) has been DEPRECATED, and will be unsupported beyond 01 June 2024.[0m</code></td></tr><tr><td><code>[32mWe highly encourage switching to the new [0m[32m[1m`scan`[0m[32m command which is easier to use, more powerful, and can be set up to mimic the deprecated command if required.[0m</code></td></tr><tr><td><code>[33m[1m+===========================================================================================================================================================================================+[0m</code></td></tr><tr><td><code>+==============================================================================+</code></td></tr><tr><td><code>/$$$$$$            /$$</code></td></tr><tr><td><code>/$$__  $$          | $$</code></td></tr><tr><td><code>/$$$$$$$  /$$$$$$ | $$  \__//$$$$$$  /$$$$$$   /$$   /$$</code></td></tr><tr><td><code>/$$_____/ |____  $$| $$$$   /$$__  $$|_  $$_/  | $$  | $$</code></td></tr><tr><td><code>|  $$$$$$   /$$$$$$$| $$_/  | $$$$$$$$  | $$    | $$  | $$</code></td></tr><tr><td><code>\____  $$ /$$__  $$| $$    | $$_____/  | $$ /$$| $$  | $$</code></td></tr><tr><td><code>/$$$$$$$/|  $$$$$$$| $$    |  $$$$$$$  |  $$$$/|  $$$$$$$</code></td></tr><tr><td><code>|_______/  \_______/|__/     \_______/   \___/   \____  $$</code></td></tr><tr><td><code>/$$  | $$</code></td></tr><tr><td><code>|  $$$$$$/</code></td></tr><tr><td><code>by safetycli.com                                        \______/</code></td></tr><tr><td><code>+==============================================================================+</code></td></tr><tr><td><code>[1mREPORT[0m</code></td></tr><tr><td><code>Safety [1mv3.8.1[0m is scanning for [1mVulnerabilities[0m[1m...[0m</code></td></tr><tr><td><code>[1m  Scanning dependencies[0m in your [1menvironment:[0m</code></td></tr><tr><td><code>-&gt; /home/runner/.local/lib/python3.12/site-packages</code></td></tr><tr><td><code>-&gt; /usr/lib/python3/dist-packages</code></td></tr><tr><td><code>-&gt; /usr/local/lib/python3.12/dist-packages</code></td></tr><tr><td><code>Using [1mopen-source vulnerability database[0m</code></td></tr><tr><td><code>[1m  Found and scanned 130 packages[0m</code></td></tr><tr><td><code>Timestamp [1m2026-07-30 16:31:27[0m</code></td></tr><tr><td><code>[1m  54[0m[1m vulnerabilities reported[0m</code></td></tr><tr><td><code>[1m  0[0m[1m vulnerabilities ignored[0m</code></td></tr><tr><td><code>+==============================================================================+</code></td></tr><tr><td><code>[1mVULNERABILITIES REPORTED[0m</code></td></tr><tr><td><code>+==============================================================================+</code></td></tr><tr><td><code>[31m-&gt; Vulnerability found in configobj version 5.0.8[0m</code></td></tr><tr><td><code>[1m   Vulnerability ID: [0m54843</code></td></tr><tr><td><code>[1m   Affected spec: [0m&lt;5.0.9</code></td></tr><tr><td><code>[1m   ADVISORY: [0mThe configobj package affected versions contains a</code></td></tr><tr><td><code>Regular Expression Denial of Service (ReDoS) vulnerability in its validate</code></td></tr><tr><td><code>function. The vulnerable regex (.+?)\((.*)\) allows attackers to cause</code></td></tr><tr><td><code>denial of service using specially crafted input with nested parentheses.</code></td></tr><tr><td><code>This issue primarily affects server-side applications using configobj for</code></td></tr><tr><td><code>configuration parsing. The vulnerability is patched by modifying the regex</code></td></tr><tr><td><code>to ([^\(\)]+?)\((.*)\), preventing matching of nested parentheses. NOTE:</code></td></tr><tr><td><code>This is only exploitable in the case of a developer putting the offending</code></td></tr><tr><td><code>value in a server side configuration file.</code></td></tr><tr><td><code>[1m   CVE-2023-26112[0m</code></td></tr><tr><td><code>[1m   For more information about this vulnerability, visit</code></td></tr><tr><td><code>[0mhttps://getsafety.com/v/54843/97c[0m</code></td></tr><tr><td><code>To ignore this vulnerability, use PyUp vulnerability id 54843 in safety’s</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            Generated automatically by platform-workflows GitHub Action Pipeline.
+        </footer>
+    </div>
+</body>
+</html>

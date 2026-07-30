@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonarQube SAST Report - irajatpandey_Learning-Github-Actions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-orange: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .title-group h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .title-group p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
+        }
+
+        .sonar-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            color: #c4b5fd;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .sonar-link-btn:hover {
+            background: rgba(139, 92, 246, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Quality Gate Banner */
+        .qg-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+        }
+
+        .qg-banner.qg-passed {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .qg-banner.qg-failed {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .qg-status {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .qg-icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .qg-passed .qg-icon-circle {
+            background: rgba(16, 185, 129, 0.25);
+            color: var(--accent-green);
+        }
+
+        .qg-failed .qg-icon-circle {
+            background: rgba(239, 68, 68, 0.25);
+            color: var(--accent-red);
+        }
+
+        .qg-text h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .qg-text p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* KPI Cards Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.25rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .kpi-title {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0.5rem 0 0.2rem 0;
+        }
+
+        .kpi-rating {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .rating-a { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .rating-b { background: rgba(6, 182, 212, 0.2); color: var(--accent-cyan); }
+        .rating-c { background: rgba(245, 158, 11, 0.2); color: var(--accent-orange); }
+        .rating-d, .rating-e { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); }
+
+        /* Table Section */
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-header {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+        }
+
+        th, td {
+            padding: 0.85rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.92rem;
+        }
+
+        th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-passed { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .badge-failed { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); }
+        .sev-blocker, .sev-critical { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); }
+        .sev-major { background: rgba(245, 158, 11, 0.2); color: var(--accent-orange); }
+        .sev-minor, .sev-info { background: rgba(6, 182, 212, 0.2); color: var(--accent-cyan); }
+
+        .file-path {
+            font-family: monospace;
+            color: #cbd5e1;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="title-group">
+                <h1>SonarQube SAST Report</h1>
+                <p>Project: <strong>irajatpandey_Learning-Github-Actions</strong> &bull; Organization: <strong>irajatpandey</strong></p>
+            </div>
+            <a href="https://sonarcloud.io/dashboard?id=irajatpandey_Learning-Github-Actions" target="_blank" class="sonar-link-btn">
+                Open in SonarCloud &rarr;
+            </a>
+        </header>
+
+        <!-- Quality Gate Status Banner -->
+        <div class="qg-banner qg-passed">
+            <div class="qg-status">
+                <div class="qg-icon-circle">✓</div>
+                <div class="qg-text">
+                    <h2>Quality Gate Status: OK</h2>
+                    <p>All strict quality rules evaluated against project standards.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPI Metrics Grid -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-title">Bugs</div>
+                <div class="kpi-value" style="color: var(--accent-red);">0</div>
+                <span class="kpi-rating rating-a">Rating A</span>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Vulnerabilities</div>
+                <div class="kpi-value" style="color: var(--accent-orange);">3</div>
+                <span class="kpi-rating rating-e">Rating E</span>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Security Hotspots</div>
+                <div class="kpi-value" style="color: var(--accent-purple);">0</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Code Smells</div>
+                <div class="kpi-value" style="color: var(--accent-cyan);">2</div>
+                <span class="kpi-rating rating-a">Rating A</span>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Coverage</div>
+                <div class="kpi-value" style="color: var(--accent-green);">90.0%</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Duplications</div>
+                <div class="kpi-value">0.0%</div>
+            </div>
+        </div>
+
+        <!-- Quality Gate Conditions -->
+        <div class="section-card">
+            <div class="section-header">
+                <span>Quality Gate Conditions</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Metric</th>
+                        <th>Threshold</th>
+                        <th>Actual Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+    <tr>
+        <td><span class="badge badge-passed">OK</span></td>
+        <td><strong>New Reliability Rating</strong></td>
+        <td>GT 1</td>
+        <td><strong>1</strong></td>
+    </tr>
+    
+    <tr>
+        <td><span class="badge badge-passed">OK</span></td>
+        <td><strong>New Security Rating</strong></td>
+        <td>GT 1</td>
+        <td><strong>1</strong></td>
+    </tr>
+    
+    <tr>
+        <td><span class="badge badge-passed">OK</span></td>
+        <td><strong>New Maintainability Rating</strong></td>
+        <td>GT 1</td>
+        <td><strong>1</strong></td>
+    </tr>
+    
+    <tr>
+        <td><span class="badge badge-passed">OK</span></td>
+        <td><strong>New Security Hotspots Reviewed</strong></td>
+        <td>LT 100</td>
+        <td><strong>100.0</strong></td>
+    </tr>
+    
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Code Issues Breakdown -->
+        <div class="section-card">
+            <div class="section-header">
+                <span>Detected Open Issues (5)</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Severity</th>
+                        <th>Type</th>
+                        <th>Component & Line</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+    <tr>
+        <td><span class="badge sev-critical">CRITICAL</span></td>
+        <td>Vulnerability</td>
+        <td class="file-path">basic-flask-project/app.py:4</td>
+        <td>Make sure disabling CSRF protection is safe here.</td>
+    </tr>
+    
+    <tr>
+        <td><span class="badge sev-major">MAJOR</span></td>
+        <td>Code Smell</td>
+        <td class="file-path">basic-flask-project/app.py:7</td>
+        <td>Specify the HTTP methods this route should accept.</td>
+    </tr>
+    
+    <tr>
+        <td><span class="badge sev-major">MAJOR</span></td>
+        <td>Code Smell</td>
+        <td class="file-path">basic-flask-project/app.py:12</td>
+        <td>Specify the HTTP methods this route should accept.</td>
+    </tr>
+    
+    <tr>
+        <td><span class="badge sev-blocker">BLOCKER</span></td>
+        <td>Vulnerability</td>
+        <td class="file-path">basic-flask-project/app.py:18</td>
+        <td>Avoid binding the application to all network interfaces.</td>
+    </tr>
+    
+    <tr>
+        <td><span class="badge sev-minor">MINOR</span></td>
+        <td>Vulnerability</td>
+        <td class="file-path">basic-flask-project/app.py:18</td>
+        <td>Make sure this debug feature is deactivated before delivering the code in production.</td>
+    </tr>
+    
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            Generated automatically by platform-workflows GitHub Action Pipeline.
+        </footer>
+    </div>
+</body>
+</html>
