@@ -24,18 +24,10 @@ on:
         type: string
         default: ""
 
-      run-nexus:
-        description: Run Nexus IQ dependency policy scan
-        required: false
-        type: boolean
-        default: true
-
 jobs:
   ci-pipeline-jobs:
     uses: irajatpandey/platform-workflows/.github/workflows/python-ci.yml@master
     with:
       python-version: ${{ inputs.python-version }}
       exclusions: ${{ inputs.exclusions }}
-      run-sonar: true
-      run-nexus: ${{ inputs.run-nexus == true || inputs.run-nexus == '' }}
     secrets: inherit
