@@ -36,13 +36,13 @@ It will be compatible before version 2.0.0.
   Safety [1mv3.8.1[0m is scanning for [1mVulnerabilities[0m[1m...[0m
 [1m  Scanning dependencies[0m in your [1menvironment:[0m
 
+  -> /usr/local/lib/python3.12/dist-packages
   -> /home/runner/.local/lib/python3.12/site-packages
   -> /usr/lib/python3/dist-packages
-  -> /usr/local/lib/python3.12/dist-packages
 
   Using [1mopen-source vulnerability database[0m
 [1m  Found and scanned 130 packages[0m
-  Timestamp [1m2026-07-30 16:31:27[0m
+  Timestamp [1m2026-08-01 12:10:34[0m
 [1m  54[0m[1m vulnerabilities reported[0m
 [1m  0[0m[1m vulnerabilities ignored[0m
 
@@ -553,23 +553,6 @@ It will be compatible before version 2.0.0.
 
 
 [31m-> Vulnerability found in urllib3 version 2.0.7[0m
-[1m   Vulnerability ID: [0m77744
-[1m   Affected spec: [0m<2.5.0
-[1m   ADVISORY: [0murllib3 is a user-friendly HTTP client library for
-   Python. Prior to 2.5.0, it is possible to disable redirects for all
-   requests by instantiating a PoolManager and specifying retries in a way
-   that disable redirects. By default, requests and botocore users are not
-   affected. An application attempting to mitigate SSRF or open redirect
-   vulnerabilities by disabling redirects at the PoolManager level will
-   remain vulnerable. This issue has been patched in version 2.5.0.
-[1m   CVE-2025-50181[0m
-[1m   For more information about this vulnerability, visit
-   [0mhttps://getsafety.com/v/77744/97c[0m
-   To ignore this vulnerability, use PyUp vulnerability id 77744 in safety’s
-   ignore command-line argument or add the ignore to your safety policy file.
-
-
-[31m-> Vulnerability found in urllib3 version 2.0.7[0m
 [1m   Vulnerability ID: [0m84031
 [1m   Affected spec: [0m>=1.22,<2.6.3
 [1m   ADVISORY: [0mAffected versions of the urllib3 package are vulnerable
@@ -585,6 +568,23 @@ It will be compatible before version 2.0.0.
 [1m   For more information about this vulnerability, visit
    [0mhttps://getsafety.com/v/84031/97c[0m
    To ignore this vulnerability, use PyUp vulnerability id 84031 in safety’s
+   ignore command-line argument or add the ignore to your safety policy file.
+
+
+[31m-> Vulnerability found in urllib3 version 2.0.7[0m
+[1m   Vulnerability ID: [0m77744
+[1m   Affected spec: [0m<2.5.0
+[1m   ADVISORY: [0murllib3 is a user-friendly HTTP client library for
+   Python. Prior to 2.5.0, it is possible to disable redirects for all
+   requests by instantiating a PoolManager and specifying retries in a way
+   that disable redirects. By default, requests and botocore users are not
+   affected. An application attempting to mitigate SSRF or open redirect
+   vulnerabilities by disabling redirects at the PoolManager level will
+   remain vulnerable. This issue has been patched in version 2.5.0.
+[1m   CVE-2025-50181[0m
+[1m   For more information about this vulnerability, visit
+   [0mhttps://getsafety.com/v/77744/97c[0m
+   To ignore this vulnerability, use PyUp vulnerability id 77744 in safety’s
    ignore command-line argument or add the ignore to your safety policy file.
 
 
