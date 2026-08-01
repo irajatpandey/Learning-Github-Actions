@@ -1,0 +1,27 @@
+name: Terraform Service Pipeline
+
+on:
+  push:
+    branches:
+      - master
+      - feature/**
+      - release/**
+  pull_request:
+    branches:
+      - master
+      - release/**
+  workflow_dispatch:
+    inputs:
+      working-directory:
+        description: Relative path to terraform directory
+        required: false
+        type: string
+        default: "."
+
+jobs:
+  terraform-pipeline:
+    uses: irajatpandey/platform-workflows/.github/workflows/terraform-ci.yml@master
+    with:
+      working-directory: ${{ inputs.working-directory || '.' }}
+      auto-apply: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
+    secrets: inherit
